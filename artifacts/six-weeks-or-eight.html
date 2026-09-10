@@ -1,0 +1,440 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Six Weeks or Eight</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #F6F7F9;
+    --surface: #FFFFFF;
+    --ink: #1B2430;
+    --ink-soft: #46525F;
+    --muted: #6E7A87;
+    --rule: #DFE4EA;
+    --rule-soft: #EBEEF2;
+    --accent: #245F8C;
+    --accent-soft: #E8F0F6;
+    --disputed: #A8492F;
+    --disputed-soft: #F7EAE6;
+    --open: #8A6314;
+    --open-soft: #F8F1DF;
+    --agreed: #2A6B51;
+    --agreed-soft: #E6F1EC;
+    --shadow: 0 1px 2px rgba(27, 36, 48, .06), 0 8px 24px -12px rgba(27, 36, 48, .12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #10151A;
+      --surface: #181F26;
+      --ink: #E7EBF0;
+      --ink-soft: #BFC8D2;
+      --muted: #94A0AC;
+      --rule: #2A333D;
+      --rule-soft: #222A33;
+      --accent: #7FB0D8;
+      --accent-soft: #1C2A36;
+      --disputed: #E29382;
+      --disputed-soft: #2E2220;
+      --open: #DFBB74;
+      --open-soft: #2C2618;
+      --agreed: #8CC7AC;
+      --agreed-soft: #1B2A24;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .6);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #10151A;
+    --surface: #181F26;
+    --ink: #E7EBF0;
+    --ink-soft: #BFC8D2;
+    --muted: #94A0AC;
+    --rule: #2A333D;
+    --rule-soft: #222A33;
+    --accent: #7FB0D8;
+    --accent-soft: #1C2A36;
+    --disputed: #E29382;
+    --disputed-soft: #2E2220;
+    --open: #DFBB74;
+    --open-soft: #2C2618;
+    --agreed: #8CC7AC;
+    --agreed-soft: #1B2A24;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 48px 28px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+
+  h1 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: clamp(30px, 5vw, 40px);
+    line-height: 1.12;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 64ch;
+    margin: 0;
+  }
+
+  h2 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 21px;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid var(--rule);
+    text-wrap: balance;
+  }
+  h2 em {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-style: normal;
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  section { display: flex; flex-direction: column; gap: 6px; }
+  p { margin: 0; max-width: 74ch; }
+  .note { color: var(--muted); font-size: 14px; }
+
+  /* Context strip: the three models in one line each */
+  .models {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: var(--shadow);
+  }
+  .models .eyebrow { margin: 0; }
+  .models dl { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .models div { display: flex; flex-direction: column; gap: 1px; }
+  .models dt { font-weight: 600; font-size: 14.5px; }
+  .models dd { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+  .models dd .date { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13.5px; }
+
+  /* Key */
+  .key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    font-size: 13.5px;
+    color: var(--muted);
+    align-items: baseline;
+  }
+  .key div { display: flex; gap: 8px; align-items: baseline; }
+
+  /* Challenge rows */
+  .item {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 4px 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  section > .item:last-of-type { border-bottom: 0; padding-bottom: 4px; }
+  .num {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 13px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .head b { font-weight: 600; font-size: 16px; }
+  .detail { grid-column: 2; font-size: 15px; color: var(--ink-soft); max-width: 72ch; }
+  .who { color: var(--muted); }
+
+  .tag {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex: none;
+  }
+  .t-disputed { color: var(--disputed); background: var(--disputed-soft); }
+  .t-open { color: var(--open); background: var(--open-soft); }
+  .t-agreed { color: var(--agreed); background: var(--agreed-soft); }
+
+  ol.decide {
+    margin: 0;
+    padding-left: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    max-width: 70ch;
+    font-size: 15px;
+  }
+  ol.decide li::marker { color: var(--muted); }
+  ol.decide b { font-weight: 600; }
+  ol.decide span { color: var(--muted); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+    color: var(--muted);
+    font-size: 13.5px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 74ch;
+  }
+
+  @media (max-width: 600px) {
+    .item { grid-template-columns: 26px 1fr; }
+    .head { flex-direction: column; align-items: flex-start; gap: 5px; }
+    .tag { order: -1; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Release process · prepared Sep 4, 2026</p>
+    <h1>Six weeks or eight</h1>
+    <p class="standfirst">The 22 open challenges from the three release meetings on Sep 2 and Sep 3, grouped by where they bite. Numbered so they can be called out by number in the room.</p>
+  </header>
+
+  <div class="models">
+    <p class="eyebrow">Context: the three models these challenges attach to</p>
+    <dl>
+      <div>
+        <dt>A. Eight weeks external, six internal</dt>
+        <dd>Agreed on the Sep 3 morning call. Five weeks dev and QA, week 6 regression, two weeks of client UAT, branch cut <span class="date">9/25</span>, UAT <span class="date">10/11</span>, production <span class="date">10/25</span>.</dd>
+      </div>
+      <div>
+        <dt>B. Six weeks, internal and external in sync</dt>
+        <dd>Agreed on the Sep 3 afternoon call. Four weeks planned work, week 5 buffer, week 6 regression, branch cut <span class="date">9/18</span>, UAT <span class="date">9/25</span> or <span class="date">9/28</span>, production <span class="date">10/11</span> unchanged.</dd>
+      </div>
+      <div>
+        <dt>C. One release behind</dt>
+        <dd>Raised by Prashant on the Fairfax model, opposed by Seshagiri and Zeke. Skip a public release and let the code sit in UAT for a full cycle.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="key">
+    <div><span class="tag t-disputed">Disputed</span> people took opposite positions</div>
+    <div><span class="tag t-open">Open</span> raised, never answered</div>
+    <div><span class="tag t-agreed">Agreed</span> settled but not yet enforced</div>
+  </div>
+
+  <section>
+    <h2>Cadence and calendar <em>3</em></h2>
+
+    <div class="item">
+      <span class="num">01</span>
+      <div class="head"><b>The two Sep 3 meetings ended on different cadences</b><span class="tag t-disputed">Disputed</span></div>
+      <p class="detail">The morning call landed on model A and that outcome was headed to Brian and Harpy. The afternoon call landed on model B. Prashant and Zeke were absent for most of the afternoon, so A has never been formally retired and is still what leadership expects. <span class="who">Inference from the notes, not stated on either call.</span></p>
+    </div>
+
+    <div class="item">
+      <span class="num">02</span>
+      <div class="head"><b>Internal and external cadences cannot run at different lengths</b><span class="tag t-disputed">Disputed</span></div>
+      <p class="detail">They drift apart every cycle. <span class="who">Sid: a 6-week internal against an 8-week external "cannot work, it has to be in sync." Prashant raised the same risk himself, that the team could end up working on one release while shipping one two releases old, then still proposed the split.</span></p>
+    </div>
+
+    <div class="item">
+      <span class="num">03</span>
+      <div class="head"><b>Three sets of dates are in circulation, and two of them disagree with themselves</b><span class="tag t-open">Open</span></div>
+      <p class="detail">The afternoon notes say <span class="date">9/25</span> in the detail and <span class="date">9/28</span> in the summary; the morning notes say both <span class="date">10/23</span> and <span class="date">10/25</span> for production. Eight weeks also means four sprints per release, so it changes the internal process, not just the calendar. <span class="who">Seshagiri: "without changing calendar dates our current process will work."</span></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Hotfixes while a release is held <em>4</em></h2>
+
+    <div class="item">
+      <span class="num">04</span>
+      <div class="head"><b>How long release code sits unreleased is the core objection</b><span class="tag t-disputed">Disputed</span></div>
+      <p class="detail">Four weeks under model A, roughly six under model C, and hotfixes have to be maintained against a held branch the whole time. <span class="who">Seshagiri expects critical hotfixes for the next couple of releases regardless, and this is his stated single reason for opposing C. Prashant: a shorter interval means fewer hotfixes, and every approach has costs.</span></p>
+    </div>
+
+    <div class="item">
+      <span class="num">05</span>
+      <div class="head"><b>No branching or merge strategy exists for a UAT hotfix</b><span class="tag t-open">Open</span></div>
+      <p class="detail">Fix on DevOps, push to UAT, then merge back into staging and the release build. Acknowledged as "a little complicated" and left there.</p>
+    </div>
+
+    <div class="item">
+      <span class="num">06</span>
+      <div class="head"><b>Critical bug on Friday, UAT deploy on Sunday</b><span class="tag t-open">Open</span></div>
+      <p class="detail">Does it get fixed on staging or on UAT, and who tests it where? <span class="who">Suvarna asked directly. No answer was given on the call.</span></p>
+    </div>
+
+    <div class="item">
+      <span class="num">07</span>
+      <div class="head"><b>The freeze exception path has never been used</b><span class="tag t-agreed">Agreed</span></div>
+      <p class="detail">Nothing goes in during the final week unless three or four leads agree the use case on a call, and non-critical post-release hotfixes hold until the next morning. Both rules are agreed and untested, and enforcement sits with Prashant, Seshagiri and Sid.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Whether one week of regression is real <em>5</em></h2>
+
+    <div class="item">
+      <span class="num">08</span>
+      <div class="head"><b>QA says one week is hardly possible, Prashant says it is</b><span class="tag t-disputed">Disputed</span></div>
+      <p class="detail"><span class="who">Suvarna: closing development in week 5 and finishing regression in the same window needs very strict planning and is "hardly possible." Prashant: RC1 is pretty darn comprehensive and gets done in 48 hours, so a focused week should do it.</span></p>
+    </div>
+
+    <div class="item">
+      <span class="num">09</span>
+      <div class="head"><b>Spillover out of week 5 is the failure mode</b><span class="tag t-disputed">Disputed</span></div>
+      <p class="detail"><span class="who">Zeke called spillover guaranteed. Seshagiri says planning has to eliminate it.</span> Model B answers this by planning only four weeks and holding week 5 as buffer, which cuts planned capacity per release and needs product and leadership to accept that.</p>
+    </div>
+
+    <div class="item">
+      <span class="num">10</span>
+      <div class="head"><b>No rule for which regression bugs get fixed in the final week</b><span class="tag t-open">Open</span></div>
+      <p class="detail"><span class="who">Sid's position: fix only what this release's work broke, defer anything already live in production.</span> Agreed in conversation, never written down as the rule.</p>
+    </div>
+
+    <div class="item">
+      <span class="num">11</span>
+      <div class="head"><b>RC1 has to run before the UAT push</b><span class="tag t-open">Open</span></div>
+      <p class="detail">The build going to UAT must be release-ready, so either RC1 runs twice per release or another environment is needed. <span class="who">Prashant raised it and set it aside as an environment question.</span></p>
+    </div>
+
+    <div class="item">
+      <span class="num">12</span>
+      <div class="head"><b>QA workload is not balanced across the cycle</b><span class="tag t-open">Open</span></div>
+      <p class="detail">Development closing Wednesday to give QA Thursday and Friday is the target and it slips to Saturday. QA also has to close release work in week 5 and pick up UAT support in weeks 5 and 6. <span class="who">Suvarna: this needs planning very carefully because it is the first time.</span></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Environments <em>4</em></h2>
+
+    <div class="item">
+      <span class="num">13</span>
+      <div class="head"><b>DevOps or staging for the pre-release build</b><span class="tag t-disputed">Disputed</span></div>
+      <p class="detail">Formally still open from the Sep 2 call. <span class="who">Seshagiri wants DevOps because nobody deploys manually there and few people have access. Prashant questions the logistics and sees staging as the natural home, frozen and mirroring production.</span></p>
+    </div>
+
+    <div class="item">
+      <span class="num">14</span>
+      <div class="head"><b>Whichever environment is chosen, it has to be cleared and loaded</b><span class="tag t-open">Open</span></div>
+      <p class="detail">No manual DLL, assembly, JS or script changes in the final week, which displaces the database restores and breaking-change testing that use staging in that window. Client verification also only means something on restored production data for the large accounts. Neither has been scoped.</p>
+    </div>
+
+    <div class="item">
+      <span class="num">15</span>
+      <div class="head"><b>The caveat list Harpy asked for does not exist yet</b><span class="tag t-open">Open</span></div>
+      <p class="detail">What will not work in the client UAT environment: communicator app, interfaces, billing, SSO, Form.IO needing separate tenants, non-production data refresh. It was the first action item out of the Sep 3 morning call.</p>
+    </div>
+
+    <div class="item">
+      <span class="num">16</span>
+      <div class="head"><b>Containers or on-prem, and who owns the environment long term</b><span class="tag t-open">Open</span></div>
+      <p class="detail">Deferred to a technical session with Venu, Andrew, Civa and Gopi that has not happened. Permanent client access with a fresh build every cycle also carries an ongoing support load nobody has costed.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Discipline, and the failure that started this <em>3</em></h2>
+
+    <div class="item">
+      <span class="num">17</span>
+      <div class="head"><b>The root cause was manual deployment, not cadence</b><span class="tag t-agreed">Agreed</span></div>
+      <p class="detail">A batch file pointed at an old hotfix folder and a database component outside the pull request went to production during a rushed late-night fix. No cadence change addresses that. Environment control and the freeze do.</p>
+    </div>
+
+    <div class="item">
+      <span class="num">18</span>
+      <div class="head"><b>QA and the deployment team still have not been in the room</b><span class="tag t-open">Open</span></div>
+      <p class="detail">Deployment is where the failure actually happened. <span class="who">Prashant flagged this twice on Sep 2 and it is still an open action.</span></p>
+    </div>
+
+    <div class="item">
+      <span class="num">19</span>
+      <div class="head"><b>"Treat UAT as production" is load-bearing and unenforced</b><span class="tag t-open">Open</span></div>
+      <p class="detail">The whole model collapses if the team treats the UAT build as lower grade. <span class="who">Prashant: any room to slip will get taken, "I have two weeks to fix it." Sid: without this, doing all of it adds no value.</span> A customer finding a bug in UAT should escalate like a red-ball event, which is undefined.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>People and stakeholders <em>3</em></h2>
+
+    <div class="item">
+      <span class="num">20</span>
+      <div class="head"><b>The capacity question is coming, whichever model wins</b><span class="tag t-open">Open</span></div>
+      <p class="detail">Two hardening weeks per cycle invites "we are spending more on hardening than on new features." <span class="who">Prashant and Zeke both anticipated it.</span> Four weeks of planned work in a six-week cycle raises the same question in a different form.</p>
+    </div>
+
+    <div class="item">
+      <span class="num">21</span>
+      <div class="head"><b>One release is not an evidence base, and teams have just been rewired once</b><span class="tag t-open">Open</span></div>
+      <p class="detail"><span class="who">Zeke: nothing yet shows the hardening sprint succeeding or failing, and the deployment failure was independent of it. Prashant: too much change and people get confused and make mistakes. Sid: it deserves another release or two before being judged.</span></p>
+    </div>
+
+    <div class="item">
+      <span class="num">22</span>
+      <div class="head"><b>The fixes depend on people outside this room</b><span class="tag t-open">Open</span></div>
+      <p class="detail">Requirement clarity on day one and splitting work items small enough for QA to start early is the upstream cause of spillover. Capacity only returns if product is ready for the next release, which needs Brian. And staying out of panic mode on the largest account has to hold team-wide, not just between Sid and Seshagiri.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What has to be decided today</h2>
+    <ol class="decide">
+      <li><b>One cadence, one calendar.</b> <span>Settles 01, 02, 03. The reframe that helps: the client asked for a UAT environment, not for a particular cadence.</span></li>
+      <li><b>The hotfix path for a held release.</b> <span>Settles 04, 05, 06. Otherwise this reopens the cadence decision later.</span></li>
+      <li><b>Owners for 15, 16, 13 and 18.</b> <span>The caveat list, the environment session, DevOps versus staging, and bringing QA and deployment in.</span></li>
+      <li><b>What leadership is told, and by whom.</b> <span>Brian and Harpy currently expect model A.</span></li>
+    </ol>
+  </section>
+
+  <footer>
+    <p>Compiled from the Gemini-generated notes and transcripts of the Sep 2 process-change call and the two Sep 3 cadence calls. Those transcripts contain visible transcription errors, so confirm specific dates in the room rather than treating them as final.</p>
+    <p>Positions are attributed as the notes record them, and anything marked as an inference is mine rather than something anyone said. Client names are left out deliberately; roles are used instead. Needs a human read before it goes to leadership.</p>
+  </footer>
+
+</div>
+
+</body></html>

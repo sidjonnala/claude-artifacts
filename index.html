@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Artifact Index</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --ground: #F6F7F9;
+    --surface: #FFFFFF;
+    --surface-2: #EEF1F4;
+    --ink: #1B2430;
+    --ink-soft: #46525F;
+    --muted: #6E7A87;
+    --rule: #DFE4EA;
+    --rule-soft: #EBEEF2;
+    --accent: #245F8C;
+    --accent-soft: #E8F0F6;
+    --warn: #8A6314;
+    --warn-soft: #F8F1DF;
+    --shadow: 0 1px 2px rgba(27,36,48,.06), 0 8px 24px -12px rgba(27,36,48,.12);
+    --shadow-lift: 0 2px 4px rgba(27,36,48,.08), 0 14px 32px -14px rgba(27,36,48,.22);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #10151A;
+      --surface: #181F26;
+      --surface-2: #212A33;
+      --ink: #E7EBF0;
+      --ink-soft: #BFC8D2;
+      --muted: #94A0AC;
+      --rule: #2A333D;
+      --rule-soft: #222A33;
+      --accent: #7FB0D8;
+      --accent-soft: #1C2A36;
+      --warn: #DFBB74;
+      --warn-soft: #2C2618;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+      --shadow-lift: 0 2px 4px rgba(0,0,0,.5), 0 14px 32px -14px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #10151A;
+    --surface: #181F26;
+    --surface-2: #212A33;
+    --ink: #E7EBF0;
+    --ink-soft: #BFC8D2;
+    --muted: #94A0AC;
+    --rule: #2A333D;
+    --rule-soft: #222A33;
+    --accent: #7FB0D8;
+    --accent-soft: #1C2A36;
+    --warn: #DFBB74;
+    --warn-soft: #2C2618;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    --shadow-lift: 0 2px 4px rgba(0,0,0,.5), 0 14px 32px -14px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 44px 24px 72px; }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 12px;
+  }
+  h1 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: clamp(28px, 4.6vw, 38px); line-height: 1.12; font-weight: 600;
+    letter-spacing: -.01em; margin: 0 0 12px; text-wrap: balance;
+  }
+  .standfirst { font-size: 17px; color: var(--ink-soft); max-width: 66ch; margin: 0; }
+
+  .banner {
+    display: flex; gap: 10px; align-items: baseline;
+    margin: 26px 0 0; padding: 11px 14px; border-radius: 3px;
+    background: var(--warn-soft); color: var(--warn);
+    font-size: 13.5px; line-height: 1.45;
+  }
+  .banner b {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
+    white-space: nowrap; flex: none; padding-top: 2px;
+  }
+
+  /* Controls */
+  .controls { margin: 34px 0 6px; display: flex; flex-direction: column; gap: 14px; }
+  .searchrow { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .field { position: relative; flex: 1 1 260px; min-width: 0; }
+  .field svg {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    width: 15px; height: 15px; color: var(--muted); pointer-events: none;
+  }
+  input[type="search"] {
+    width: 100%; font: inherit; font-size: 15px; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 10px 12px 10px 36px; appearance: none;
+  }
+  input[type="search"]::placeholder { color: var(--muted); }
+  input[type="search"]:focus-visible { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); }
+  input[type="search"]::-webkit-search-cancel-button { appearance: none; }
+  .count {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px; color: var(--muted); white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px; letter-spacing: .02em;
+    padding: 5px 10px; border-radius: 100px; cursor: pointer;
+    background: var(--surface); border: 1px solid var(--rule); color: var(--ink-soft);
+  }
+  .chip:hover { border-color: var(--muted); }
+  .chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Cards */
+  .list { margin: 26px 0 0; display: flex; flex-direction: column; gap: 12px; }
+  .card {
+    position: relative; background: var(--surface);
+    border: 1px solid var(--rule); border-radius: 4px;
+    padding: 18px 20px 16px; box-shadow: var(--shadow);
+    transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .card:hover { box-shadow: var(--shadow-lift); border-color: var(--rule); transform: translateY(-1px); }
+  .card:focus-within { border-color: var(--accent); }
+  .card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
+  .card h2 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 20px; font-weight: 600; letter-spacing: -.01em; margin: 0; text-wrap: balance;
+  }
+  .card h2 a { color: inherit; text-decoration: none; }
+  .card h2 a::after { content: ""; position: absolute; inset: 0; }
+  .card h2 a:focus-visible { outline: none; }
+  .status {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex: none;
+    background: var(--surface-2); color: var(--ink-soft);
+  }
+  .card p { margin: 8px 0 0; font-size: 15px; color: var(--ink-soft); max-width: 74ch; }
+  .meta {
+    margin: 13px 0 0; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline;
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11.5px; color: var(--muted);
+  }
+  .meta .taglist { display: flex; flex-wrap: wrap; gap: 6px; }
+  .meta .taglist span { padding: 2px 7px; border-radius: 100px; background: var(--surface-2); }
+  .meta time { font-variant-numeric: tabular-nums; }
+  .meta .src { position: relative; z-index: 1; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .meta .src:hover { color: var(--accent); border-color: var(--accent); }
+
+  .empty {
+    margin: 26px 0 0; padding: 30px 20px; text-align: center;
+    border: 1px dashed var(--rule); border-radius: 4px; color: var(--muted); font-size: 15px;
+  }
+  .empty button {
+    font: inherit; font-size: 14px; margin-top: 10px; cursor: pointer;
+    background: none; border: 0; color: var(--accent); text-decoration: underline;
+  }
+
+  footer {
+    margin: 48px 0 0; padding-top: 18px; border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: 13.5px; max-width: 74ch;
+  }
+  footer code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12.5px;
+    background: var(--surface-2); padding: 1px 5px; border-radius: 2px;
+  }
+
+  @media (max-width: 560px) {
+    .card .top { flex-direction: column; align-items: flex-start; gap: 7px; }
+    .status { order: -1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card { transition: none; }
+    .card:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Patagonia Health &middot; delivery artifacts</p>
+    <h1>Artifact Index</h1>
+    <p class="standfirst">HTML copies of selected delivery artifacts, kept here so they stay
+    reachable outside the conversation that produced them. Each one is stored verbatim, so it can
+    be re-exported and overwritten without losing anything.</p>
+    <div class="banner">
+      <b>Internal</b>
+      <span>These documents contain unreleased plans and internal discussion. Keep the repository
+      private and check content before granting anyone access.</span>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="searchrow">
+      <div class="field">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="6.8" cy="6.8" r="4.6"/><path d="M10.3 10.3 14 14"/>
+        </svg>
+        <input type="search" id="q" placeholder="Search titles, summaries, tags" aria-label="Search artifacts" autocomplete="off">
+      </div>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+    <div class="tags" id="tags" role="group" aria-label="Filter by tag"></div>
+  </div>
+
+  <main class="list" id="list"></main>
+  <div class="empty" id="empty" hidden>
+    Nothing matches that.
+    <br><button type="button" id="reset">Clear filters</button>
+  </div>
+
+  <footer>
+    <p>To add an artifact: save its HTML to <code>artifacts/&lt;slug&gt;.html</code> and add one
+    entry to <code>artifacts.js</code>. See <code>README.md</code> for the full steps. Artifacts
+    are added only when specifically requested, not automatically.</p>
+  </footer>
+
+</div>
+
+<script src="artifacts.js"></script>
+<script>
+(function () {
+  var data = (window.ARTIFACTS || []).slice().sort(function (a, b) {
+    return String(b.updated || "").localeCompare(String(a.updated || ""));
+  });
+
+  var listEl = document.getElementById("list");
+  var emptyEl = document.getElementById("empty");
+  var countEl = document.getElementById("count");
+  var tagsEl = document.getElementById("tags");
+  var qEl = document.getElementById("q");
+  var active = null;
+
+  var allTags = [];
+  data.forEach(function (a) {
+    (a.tags || []).forEach(function (t) {
+      if (allTags.indexOf(t) === -1) allTags.push(t);
+    });
+  });
+  allTags.sort();
+
+  allTags.forEach(function (t) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.textContent = t;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () {
+      active = active === t ? null : t;
+      syncChips();
+      render();
+    });
+    tagsEl.appendChild(b);
+  });
+
+  function syncChips() {
+    Array.prototype.forEach.call(tagsEl.children, function (b) {
+      b.setAttribute("aria-pressed", String(b.textContent === active));
+    });
+  }
+
+  function fmtDate(s) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s || ""));
+    if (!m) return s || "";
+    var d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+    return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
+  }
+
+  function card(a) {
+    var el = document.createElement("article");
+    el.className = "card";
+
+    var top = document.createElement("div");
+    top.className = "top";
+    var h = document.createElement("h2");
+    var link = document.createElement("a");
+    link.href = a.file;
+    link.textContent = a.title;
+    h.appendChild(link);
+    top.appendChild(h);
+    if (a.status) {
+      var st = document.createElement("span");
+      st.className = "status";
+      st.textContent = a.status;
+      top.appendChild(st);
+    }
+    el.appendChild(top);
+
+    if (a.summary) {
+      var p = document.createElement("p");
+      p.textContent = a.summary;
+      el.appendChild(p);
+    }
+
+    var meta = document.createElement("div");
+    meta.className = "meta";
+    if (a.updated) {
+      var t = document.createElement("time");
+      t.dateTime = a.updated;
+      t.textContent = "Updated " + fmtDate(a.updated);
+      meta.appendChild(t);
+    }
+    if ((a.tags || []).length) {
+      var tl = document.createElement("span");
+      tl.className = "taglist";
+      a.tags.forEach(function (tag) {
+        var s = document.createElement("span");
+        s.textContent = tag;
+        tl.appendChild(s);
+      });
+      meta.appendChild(tl);
+    }
+    if (a.source) {
+      var src = document.createElement("a");
+      src.className = "src";
+      src.href = a.source;
+      src.target = "_blank";
+      src.rel = "noopener";
+      src.textContent = "live version";
+      meta.appendChild(src);
+    }
+    el.appendChild(meta);
+    return el;
+  }
+
+  function render() {
+    var q = qEl.value.trim().toLowerCase();
+    var rows = data.filter(function (a) {
+      if (active && (a.tags || []).indexOf(active) === -1) return false;
+      if (!q) return true;
+      var hay = [a.title, a.summary, a.status, (a.tags || []).join(" ")].join(" ").toLowerCase();
+      return hay.indexOf(q) !== -1;
+    });
+
+    listEl.textContent = "";
+    rows.forEach(function (a) { listEl.appendChild(card(a)); });
+
+    emptyEl.hidden = rows.length !== 0;
+    countEl.textContent = rows.length === data.length
+      ? data.length + (data.length === 1 ? " artifact" : " artifacts")
+      : rows.length + " of " + data.length;
+  }
+
+  qEl.addEventListener("input", render);
+  document.getElementById("reset").addEventListener("click", function () {
+    qEl.value = "";
+    active = null;
+    syncChips();
+    render();
+    qEl.focus();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && document.activeElement !== qEl) {
+      e.preventDefault();
+      qEl.focus();
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
