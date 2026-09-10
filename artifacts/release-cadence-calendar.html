@@ -1,4 +1,8 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Release Cadence Calendar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +16,7 @@
   --harden:#A4670F;    --harden-tint:#F6E8D2;
   --uat:#71527D;       --uat-tint:#ECE4F0;
   --ga:#14232A;
-  --band:rgba(164,103,15,.07); --nowband:rgba(61,108,139,.09);
+  --band:rgba(164,103,15,.09); --nowband:rgba(61,108,139,.09);
   --shadow:0 1px 2px rgba(20,35,42,.06), 0 8px 24px -18px rgba(20,35,42,.4);
 }
 @media (prefers-color-scheme: dark) {
@@ -24,7 +28,7 @@
     --harden:#E2A74C;    --harden-tint:#37290F;
     --uat:#BB9CC9;       --uat-tint:#2C2236;
     --ga:#E7EEEC;
-    --band:rgba(226,167,76,.09); --nowband:rgba(132,178,206,.10);
+    --band:rgba(226,167,76,.11); --nowband:rgba(132,178,206,.10);
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
   }
 }
@@ -36,7 +40,7 @@
   --harden:#E2A74C;    --harden-tint:#37290F;
   --uat:#BB9CC9;       --uat-tint:#2C2236;
   --ga:#E7EEEC;
-  --band:rgba(226,167,76,.09); --nowband:rgba(132,178,206,.10);
+  --band:rgba(226,167,76,.11); --nowband:rgba(132,178,206,.10);
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
 }
 
@@ -71,7 +75,7 @@ section { margin-top:44px; }
 .scroll { overflow-x:auto; padding-bottom:6px; margin-top:8px;
   border:1px solid var(--rule); border-radius:3px; background:var(--surface);
   box-shadow:var(--shadow); scrollbar-width:thin; }
-.chart { display:grid; grid-template-columns:170px repeat(32, 52px);
+.chart { display:grid; grid-template-columns:170px repeat(31, 52px);
   width:max-content; align-items:stretch; position:relative; }
 .gutter { position:sticky; left:0; z-index:3; background:var(--surface);
   box-shadow:1px 0 0 var(--rule-2); }
@@ -104,7 +108,9 @@ section { margin-top:44px; }
 .bar { position:relative; z-index:1; margin:6px 3px 3px; padding:8px 8px 7px; border-radius:2px;
   display:flex; flex-direction:column; gap:1px; min-height:48px; justify-content:center;
   border-left:3px solid; overflow:hidden; }
-.bar.thin { min-height:34px; margin:0 3px 7px; padding:5px 8px; }
+.bar.thin { min-height:34px; margin:0 3px 7px; padding:5px 6px; }
+.bar.one { padding-left:5px; padding-right:3px; }
+.bar.one b { font-size:11px; letter-spacing:-.02em; }
 .bar b { font-size:12px; font-weight:600; letter-spacing:-.01em; color:var(--ink); white-space:nowrap; }
 .bar span { font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.02em; white-space:nowrap; }
 .bar.dev { background:var(--dev-tint); border-color:var(--dev); }
@@ -114,7 +120,7 @@ section { margin-top:44px; }
 .bar.uat { background:var(--uat-tint); border-color:var(--uat); }
 .bar.uat span { color:var(--uat); }
 
-.pin { position:relative; z-index:1; align-self:end; text-align:right;
+.pin { position:relative; z-index:1; align-self:end; text-align:right; min-width:0;
   font-family:"IBM Plex Mono", monospace; font-size:10px; line-height:14px; min-height:15px;
   letter-spacing:.01em; padding:0 6px 1px 0; border-right:2px solid; white-space:nowrap; }
 .pin.dev { color:var(--dev); border-color:var(--dev); }
@@ -159,49 +165,55 @@ footer { margin-top:52px; padding-top:18px; border-top:1px solid var(--rule);
   font-size:13px; color:var(--muted); max-width:70ch; }
 </style>
 
+<style>
+:root { color-scheme: light dark; }
+body { margin:0; }
+img { max-width:100%; }
+[hidden] { display:none !important; }
+</style>
+</head>
+<body>
 <div class="wrap">
 
 <p class="eyebrow">Proposal for discussion, not yet approved</p>
-<h1>Eight weeks per release. Six weeks between releases.</h1>
-<p class="lede">A release runs eight weeks from its first sprint to GA. Its hardening sprint is
-also the first sprint of the next release, so releases start every six weeks and reach
-production every six weeks. No production date moves and the sprint calendar does not change.</p>
+<h1>Seven weeks per release. Six weeks between releases.</h1>
+<p class="lede">A release runs seven weeks from Sprint 1 to GA: four weeks of development, a
+two-week hardening sprint, then one week of client testing on UAT. The next release starts
+during that UAT week, so releases still reach production every six weeks.</p>
 
 <div class="thesis">
   <div>
-    <span class="num a">8</span>
+    <span class="num a">7</span>
     <h2>Weeks per release</h2>
-    <p>Sprint 1 through GA. Three development sprints, then a hardening sprint that runs while
-    clients test on UAT.</p>
+    <p>Sprint 1 through GA. Sprint 1 and 2 build, Sprint 3 hardens, week 7 is client UAT.</p>
   </div>
   <div>
     <span class="num b">6</span>
     <h2>Weeks between GAs</h2>
-    <p>10/11, 11/22, 1/3/27, 2/14/27, 3/28/27. The same six-week rhythm the teams run today, and
-    the same interval between UAT releases.</p>
+    <p>10/4, 11/15, 12/27, 2/7/27, 3/21/27. The six-week rhythm the teams already run.</p>
   </div>
   <div>
-    <span class="num c">2</span>
-    <h2>Weeks of overlap</h2>
-    <p>8 minus 6. Weeks 7 and 8 of one release are weeks 1 and 2 of the next. Clients test the
-    old build while the teams build the new one.</p>
+    <span class="num c">1</span>
+    <h2>Week of overlap</h2>
+    <p>7 minus 6. Only the client UAT week overlaps the next release, and it carries no work
+    from the release being tested.</p>
   </div>
 </div>
 
 <section>
   <h3>Five consecutive releases on one calendar</h3>
   <p>Weeks run Monday to Sunday. Sprints close on Friday, deployments go out Sunday night.
-  Each lane is numbered in that release's own weeks, so the shaded columns carry two week
-  numbers at once. Scroll right for the runway through March 2027; the release column stays
-  in place.</p>
+  Each lane is numbered in that release's own weeks. October keeps the current process one last
+  time; November onward is the standard shape. Scroll right for the runway through March 2027;
+  the release column stays in place.</p>
   <div class="scroll">
-<div class="chart" role="img" aria-label="Timeline of five consecutive releases across 32 weeks">
+<div class="chart" role="img" aria-label="Timeline of five consecutive releases across 31 weeks">
 <div class="gutter" style="grid-column:1;grid-row:1/28"></div>
-<div class="band" style="grid-column:8/10;grid-row:1/28"></div>
-<div class="band" style="grid-column:14/16;grid-row:1/28"></div>
-<div class="band" style="grid-column:20/22;grid-row:1/28"></div>
-<div class="band" style="grid-column:26/28;grid-row:1/28"></div>
-<div class="band now" style="grid-column:5/6;grid-row:1/28"></div>
+<div class="band" style="grid-column:8;grid-row:1/28"></div>
+<div class="band" style="grid-column:14;grid-row:1/28"></div>
+<div class="band" style="grid-column:20;grid-row:1/28"></div>
+<div class="band" style="grid-column:26;grid-row:1/28"></div>
+<div class="band now" style="grid-column:5;grid-row:1/28"></div>
 <div class="cell lab month-lab" style="grid-row:1;grid-column:1">Calendar</div>
 <div class="cell month" style="grid-row:1;grid-column:2/4">Aug 2026</div>
 <div class="cell month" style="grid-row:1;grid-column:4/8">Sep 2026</div>
@@ -210,7 +222,7 @@ production every six weeks. No production date moves and the sprint calendar doe
 <div class="cell month" style="grid-row:1;grid-column:17/22">Dec 2026</div>
 <div class="cell month" style="grid-row:1;grid-column:22/26">Jan 2027</div>
 <div class="cell month" style="grid-row:1;grid-column:26/30">Feb 2027</div>
-<div class="cell month" style="grid-row:1;grid-column:30/34">Mar 2027</div>
+<div class="cell month" style="grid-row:1;grid-column:30/33">Mar 2027</div>
 <div class="cell lab" style="grid-row:2;grid-column:1">Week of (Mon)</div>
 <div class="cell wk" style="grid-row:2;grid-column:2">8/17</div>
 <div class="cell wk" style="grid-row:2;grid-column:3">8/24</div>
@@ -243,141 +255,135 @@ production every six weeks. No production date moves and the sprint calendar doe
 <div class="cell wk" style="grid-row:2;grid-column:30">3/1</div>
 <div class="cell wk" style="grid-row:2;grid-column:31">3/8</div>
 <div class="cell wk" style="grid-row:2;grid-column:32">3/15</div>
-<div class="cell wk" style="grid-row:2;grid-column:33">3/22</div>
-<div class="cell lab rel-lab" style="grid-row:5/7;grid-column:1"><b>October release</b><span>GA 10/11/26</span></div>
+<div class="cell lab rel-lab" style="grid-row:5/7;grid-column:1"><b>October release</b><span>GA 10/4/26</span></div>
 <div class="bar dev" style="grid-row:5;grid-column:2/4"><b>Sprint 1</b><span>wk 1-2</span></div>
 <div class="bar dev" style="grid-row:5;grid-column:4/6"><b>Sprint 2</b><span>wk 3-4</span></div>
 <div class="bar dev" style="grid-row:5;grid-column:6/8"><b>Sprint 3</b><span>wk 5-6</span></div>
-<div class="bar harden" style="grid-row:5;grid-column:8/10"><b>Hardening</b><span>wk 7-8</span></div>
-<div class="bar uat thin" style="grid-row:6;grid-column:8/10"><b>Client UAT</b><span>wk 7-8</span></div>
+<div class="bar harden one" style="grid-row:5;grid-column:8/9"><b>Harden</b><span>wk 7</span></div>
+<div class="bar uat thin one" style="grid-row:6;grid-column:8"><b>UAT</b><span>wk 7</span></div>
 <div class="cell sub" style="grid-row:6;grid-column:2/8">Internal only, no client build</div>
 <div class="pin dev" style="grid-row:3;grid-column:4/7">Branch cut 9/18/26</div>
-<div class="pin ga" style="grid-row:3;grid-column:7/10">GA 10/11/26</div>
-<div class="pin harden" style="grid-row:4;grid-column:5/8">RC1, UAT release 9/27/26</div>
-<div class="cell lab rel-lab" style="grid-row:10/12;grid-column:1"><b>November release</b><span>GA 11/22/26</span></div>
+<div class="pin harden" style="grid-row:4;grid-column:5/8">RC1, to UAT 9/27/26</div>
+<div class="pin ga" style="grid-row:3;grid-column:6/9">GA 10/4/26</div>
+<div class="cell lab rel-lab" style="grid-row:10/12;grid-column:1"><b>November release</b><span>GA 11/15/26</span></div>
 <div class="bar dev" style="grid-row:10;grid-column:8/10"><b>Sprint 1</b><span>wk 1-2</span></div>
 <div class="bar dev" style="grid-row:10;grid-column:10/12"><b>Sprint 2</b><span>wk 3-4</span></div>
-<div class="bar dev" style="grid-row:10;grid-column:12/14"><b>Sprint 3</b><span>wk 5-6</span></div>
-<div class="bar harden" style="grid-row:10;grid-column:14/16"><b>Hardening</b><span>wk 7-8</span></div>
-<div class="bar uat thin" style="grid-row:11;grid-column:14/16"><b>Client UAT</b><span>wk 7-8</span></div>
+<div class="bar harden" style="grid-row:10;grid-column:12/14"><b>Sprint 3</b><span>wk 5-6</span></div>
+<div class="bar uat thin one" style="grid-row:11;grid-column:14"><b>UAT</b><span>wk 7</span></div>
 <div class="cell sub" style="grid-row:11;grid-column:8/14">Internal only, no client build</div>
-<div class="pin dev" style="grid-row:8;grid-column:10/13">Branch cut 10/30/26</div>
-<div class="pin ga" style="grid-row:8;grid-column:13/16">GA 11/22/26</div>
-<div class="pin harden" style="grid-row:9;grid-column:11/14">RC1, UAT release 11/8/26</div>
-<div class="cell lab rel-lab" style="grid-row:15/17;grid-column:1"><b>January release</b><span>GA 1/3/27</span><em>derived</em></div>
+<div class="pin dev" style="grid-row:8;grid-column:9/12">Branch cut 10/23/26</div>
+<div class="pin dev" style="grid-row:9;grid-column:9/12">RC1 10/26/26</div>
+<div class="pin harden" style="grid-row:9;grid-column:11/14">to UAT 11/8/26</div>
+<div class="pin ga" style="grid-row:8;grid-column:12/15">GA 11/15/26</div>
+<div class="cell lab rel-lab" style="grid-row:15/17;grid-column:1"><b>January release</b><span>GA 12/27/26</span><em>derived</em></div>
 <div class="bar dev" style="grid-row:15;grid-column:14/16"><b>Sprint 1</b><span>wk 1-2</span></div>
 <div class="bar dev" style="grid-row:15;grid-column:16/18"><b>Sprint 2</b><span>wk 3-4</span></div>
-<div class="bar dev" style="grid-row:15;grid-column:18/20"><b>Sprint 3</b><span>wk 5-6</span></div>
-<div class="bar harden" style="grid-row:15;grid-column:20/22"><b>Hardening</b><span>wk 7-8</span></div>
-<div class="bar uat thin" style="grid-row:16;grid-column:20/22"><b>Client UAT</b><span>wk 7-8</span></div>
+<div class="bar harden" style="grid-row:15;grid-column:18/20"><b>Sprint 3</b><span>wk 5-6</span></div>
+<div class="bar uat thin one" style="grid-row:16;grid-column:20"><b>UAT</b><span>wk 7</span></div>
 <div class="cell sub" style="grid-row:16;grid-column:14/20">Internal only, no client build</div>
-<div class="pin dev" style="grid-row:13;grid-column:16/19">Branch cut 12/11/26</div>
-<div class="pin ga" style="grid-row:13;grid-column:19/22">GA 1/3/27</div>
-<div class="pin harden" style="grid-row:14;grid-column:17/20">RC1, UAT release 12/20/26</div>
-<div class="cell lab rel-lab" style="grid-row:20/22;grid-column:1"><b>February release</b><span>GA 2/14/27</span><em>derived</em></div>
+<div class="pin dev" style="grid-row:13;grid-column:15/18">Branch cut 12/4/26</div>
+<div class="pin dev" style="grid-row:14;grid-column:15/18">RC1 12/7/26</div>
+<div class="pin harden" style="grid-row:14;grid-column:17/20">to UAT 12/20/26</div>
+<div class="pin ga" style="grid-row:13;grid-column:18/21">GA 12/27/26</div>
+<div class="cell lab rel-lab" style="grid-row:20/22;grid-column:1"><b>February release</b><span>GA 2/7/27</span><em>derived</em></div>
 <div class="bar dev" style="grid-row:20;grid-column:20/22"><b>Sprint 1</b><span>wk 1-2</span></div>
 <div class="bar dev" style="grid-row:20;grid-column:22/24"><b>Sprint 2</b><span>wk 3-4</span></div>
-<div class="bar dev" style="grid-row:20;grid-column:24/26"><b>Sprint 3</b><span>wk 5-6</span></div>
-<div class="bar harden" style="grid-row:20;grid-column:26/28"><b>Hardening</b><span>wk 7-8</span></div>
-<div class="bar uat thin" style="grid-row:21;grid-column:26/28"><b>Client UAT</b><span>wk 7-8</span></div>
+<div class="bar harden" style="grid-row:20;grid-column:24/26"><b>Sprint 3</b><span>wk 5-6</span></div>
+<div class="bar uat thin one" style="grid-row:21;grid-column:26"><b>UAT</b><span>wk 7</span></div>
 <div class="cell sub" style="grid-row:21;grid-column:20/26">Internal only, no client build</div>
-<div class="pin dev" style="grid-row:18;grid-column:22/25">Branch cut 1/22/27</div>
-<div class="pin ga" style="grid-row:18;grid-column:25/28">GA 2/14/27</div>
-<div class="pin harden" style="grid-row:19;grid-column:23/26">RC1, UAT release 1/31/27</div>
-<div class="cell lab rel-lab" style="grid-row:25/27;grid-column:1"><b>March release</b><span>GA 3/28/27</span><em>derived</em></div>
+<div class="pin dev" style="grid-row:18;grid-column:21/24">Branch cut 1/15/27</div>
+<div class="pin dev" style="grid-row:19;grid-column:21/24">RC1 1/18/27</div>
+<div class="pin harden" style="grid-row:19;grid-column:23/26">to UAT 1/31/27</div>
+<div class="pin ga" style="grid-row:18;grid-column:24/27">GA 2/7/27</div>
+<div class="cell lab rel-lab" style="grid-row:25/27;grid-column:1"><b>March release</b><span>GA 3/21/27</span><em>derived</em></div>
 <div class="bar dev" style="grid-row:25;grid-column:26/28"><b>Sprint 1</b><span>wk 1-2</span></div>
 <div class="bar dev" style="grid-row:25;grid-column:28/30"><b>Sprint 2</b><span>wk 3-4</span></div>
-<div class="bar dev" style="grid-row:25;grid-column:30/32"><b>Sprint 3</b><span>wk 5-6</span></div>
-<div class="bar harden" style="grid-row:25;grid-column:32/34"><b>Hardening</b><span>wk 7-8</span></div>
-<div class="bar uat thin" style="grid-row:26;grid-column:32/34"><b>Client UAT</b><span>wk 7-8</span></div>
+<div class="bar harden" style="grid-row:25;grid-column:30/32"><b>Sprint 3</b><span>wk 5-6</span></div>
+<div class="bar uat thin one" style="grid-row:26;grid-column:32"><b>UAT</b><span>wk 7</span></div>
 <div class="cell sub" style="grid-row:26;grid-column:26/32">Internal only, no client build</div>
-<div class="pin dev" style="grid-row:23;grid-column:28/31">Branch cut 3/5/27</div>
-<div class="pin ga" style="grid-row:23;grid-column:31/34">GA 3/28/27</div>
-<div class="pin harden" style="grid-row:24;grid-column:29/32">RC1, UAT release 3/14/27</div>
+<div class="pin dev" style="grid-row:23;grid-column:27/30">Branch cut 2/26/27</div>
+<div class="pin dev" style="grid-row:24;grid-column:27/30">RC1 3/1/27</div>
+<div class="pin harden" style="grid-row:24;grid-column:29/32">to UAT 3/14/27</div>
+<div class="pin ga" style="grid-row:23;grid-column:30/33">GA 3/21/27</div>
 </div>
   </div>
   <div class="scrollhint">
-    <span>Aug 2026 to Mar 2027, 32 weeks. Scroll the calendar right for later releases.</span>
-    <span>October and November dates are as stated. Later releases are derived.</span>
+    <span>Aug 2026 to Mar 2027, 31 weeks. Scroll the calendar right for later releases.</span>
+    <span>October and November are being planned now. Later releases are derived.</span>
   </div>
   <div class="legend">
     <span><i class="sw dev"></i>Development sprints</span>
-    <span><i class="sw harden"></i>Hardening sprint, also sprint 1 of the next release</span>
+    <span><i class="sw harden"></i>Hardening, Sprint 3 from November on</span>
     <span><i class="sw uat"></i>Client testing on UAT</span>
-    <span><i class="sw band"></i>Hand-off zone, two releases live at once</span>
+    <span><i class="sw band"></i>Hand-off week, one release's UAT and the next one's Sprint 1</span>
   </div>
   <div class="note">
-    <p>Read the shaded columns. 9/28 to 10/9 is the October hardening sprint, the November
-    sprint 1, and the client UAT window, all at the same time. That pattern repeats every six
-    weeks across the whole calendar, and it is the whole mechanism.</p>
+    <p>Read the shaded column. That single week is the client UAT window for one release and the
+    first week of the next release's Sprint 1. It is the only overlap left, and no work from the
+    release under test happens in it.</p>
   </div>
 </section>
 
 <section>
-  <h3>The arithmetic, stated explicitly</h3>
+  <h3>What is changing</h3>
   <div class="tbl">
   <table>
-    <tr><th>Measure</th><th>Calculation</th><th>Result</th><th>Source</th></tr>
-    <tr><td class="k">Release length</td>
-        <td class="m">8/17 sprint 1 start &rarr; 10/11 GA</td>
-        <td class="r" style="color:var(--dev)">8 weeks</td>
-        <td>Sprint dates stated on Sep 3</td></tr>
-    <tr><td class="k">GA to GA</td>
-        <td class="m">10/11, 11/22, 1/3/27, 2/14/27, 3/28/27</td>
-        <td class="r" style="color:var(--harden)">6 weeks</td>
-        <td>42 days each hop. 10/11 is the existing October date</td></tr>
-    <tr><td class="k">UAT release to UAT release</td>
-        <td class="m">9/27, 11/8, 12/20, 1/31/27, 3/14/27</td>
-        <td class="r" style="color:var(--harden)">6 weeks</td>
-        <td>9/27 from the planning sheet</td></tr>
-    <tr><td class="k">Sprint 1 start to next sprint 1 start</td>
-        <td class="m">8/17, 9/28, 11/9, 12/21, 2/1/27</td>
-        <td class="r" style="color:var(--harden)">6 weeks</td>
-        <td>Sprint calendar</td></tr>
-    <tr><td class="k">Overlap</td>
-        <td class="m">8 week release &minus; 6 week rhythm</td>
-        <td class="r" style="color:var(--uat)">2 weeks</td>
-        <td>Derived</td></tr>
-    <tr><td class="k">Branch cut to GA</td>
-        <td class="m">9/18 &rarr; 10/11</td>
-        <td class="r">3 weeks</td>
-        <td>Derived</td></tr>
-    <tr><td class="k">Release build to GA</td>
-        <td class="m">9/27 UAT release &rarr; 10/11 GA</td>
-        <td class="r">2 weeks</td>
-        <td>Derived</td></tr>
+    <tr><th></th><th>October, one last time</th><th>November onward</th></tr>
+    <tr><td class="k">Planned development</td>
+        <td>Weeks 1 to 5, closing at the branch cut</td>
+        <td>Weeks 1 to 4, closing at the end of Sprint 2</td></tr>
+    <tr><td class="k">Hardening</td>
+        <td>Week 6 regression, plus a separate hardening sprint in week 7</td>
+        <td>Sprint 3, the full two weeks 5 and 6. No separate hardening sprint</td></tr>
+    <tr><td class="k">Branch cut</td>
+        <td class="m">9/18/26, end of week 5</td>
+        <td>End of Sprint 2, week 4</td></tr>
+    <tr><td class="k">RC1</td>
+        <td class="m">9/27/26, with the UAT release</td>
+        <td>Start of Sprint 3, week 5</td></tr>
+    <tr><td class="k">UAT release</td>
+        <td class="m">9/27/26, end of week 6</td>
+        <td>End of week 6</td></tr>
+    <tr><td class="k">Client UAT</td>
+        <td class="m">9/28/26 to 10/4/26, one week</td>
+        <td>Week 7, one week</td></tr>
+    <tr><td class="k">GA</td>
+        <td class="m">10/4/26</td>
+        <td>End of week 7</td></tr>
+    <tr><td class="k">Overlap with the next release</td>
+        <td>One week, the client UAT week</td>
+        <td>One week, the client UAT week</td></tr>
   </table>
   </div>
   <div class="note">
-    <p><b>This is what settles the six versus eight argument.</b> Both numbers describe the same
-    calendar. Eight is the length of one release. Six is the distance between releases. They
-    differ by the two weeks in which two releases are live at once, and that overlap is already
-    how the August and October releases are running.</p>
+    <p><b>The trade to name out loud.</b> Planned development goes from five weeks to four, and
+    dedicated hardening goes from one week to two. The six-week rhythm and every sprint boundary
+    stay exactly as they are. This is the four-plus-two shape already discussed in the Sep 3
+    session, now applied from November.</p>
   </div>
 </section>
 
 <section>
-  <h3>The eight weeks in order</h3>
+  <h3>The seven weeks in order, November onward</h3>
   <div class="tbl">
   <table>
-    <tr><th>Weeks</th><th>Sprint</th><th>What happens</th><th>October dates</th></tr>
+    <tr><th>Weeks</th><th>Sprint</th><th>What happens</th></tr>
     <tr><td class="k">1 to 2</td><td class="k">Sprint 1</td>
-        <td>Development and QA on planned work. Runs inside the previous release's hardening
-        sprint.</td><td class="m">8/17 to 8/28</td></tr>
+        <td>Development and QA on planned work. Runs inside the previous release's client UAT
+        week for its first week.</td></tr>
     <tr><td class="k">3 to 4</td><td class="k">Sprint 2</td>
-        <td>Development and QA.</td><td class="m">8/31 to 9/11</td></tr>
-    <tr><td class="k">5</td><td class="k">Sprint 3</td>
-        <td>Planned work closes. Early regression starts. Release branch cut and locked at the
-        end of the week.</td><td class="m">9/14 to 9/18</td></tr>
-    <tr><td class="k">6</td><td class="k">Sprint 3</td>
-        <td>Full regression and regression bug fixes only. No new work items. Release-ready build,
-        RC1, deploy to UAT on Sunday night.</td><td class="m">9/21 to 9/27</td></tr>
-    <tr><td class="k">7 to 8</td><td class="k">Hardening sprint</td>
-        <td>Clients test on UAT. Internally this is sprint 1 of the next release plus developer
-        unit testing, critical UAT fixes and the production regression pass.</td>
-        <td class="m">9/28 to 10/9</td></tr>
-    <tr><td class="k">End of 8</td><td class="k"></td>
-        <td>RC1 to production. GA for all clients.</td><td class="m">10/11</td></tr>
+        <td>Development and QA. All planned work closes at the end of week 4. Release branch cut
+        and locked.</td></tr>
+    <tr><td class="k">5 to 6</td><td class="k">Sprint 3</td>
+        <td>Hardening. RC1 is built at the start of week 5. Regression, developer unit testing
+        and regression fixes only, on the cut branch. No new work items.</td></tr>
+    <tr><td class="k">End of 6</td><td class="k"></td>
+        <td>Release-ready build deploys to UAT on Sunday night.</td></tr>
+    <tr><td class="k">7</td><td class="k"></td>
+        <td>Clients test on UAT. Only critical issues are fixed. The teams are in Sprint 1 of the
+        next release.</td></tr>
+    <tr><td class="k">End of 7</td><td class="k"></td>
+        <td>GA for all clients.</td></tr>
   </table>
   </div>
 </section>
@@ -386,45 +392,43 @@ production every six weeks. No production date moves and the sprint calendar doe
   <h3>Forecast through March 2027</h3>
   <div class="tbl">
   <table>
-    <tr><th>Release</th><th>Sprint 1 starts</th><th>Branch cut</th><th>UAT release</th><th>Hardening sprint</th><th>GA</th></tr>
-    <tr><td class="k">October release</td><td class="m">8/17/26</td><td class="m">9/18/26</td><td class="m">9/27/26</td><td class="m">9/28/26 to 10/9/26</td><td class="m ga">10/11/26</td></tr>
-    <tr><td class="k">November release</td><td class="m">9/28/26</td><td class="m">10/30/26</td><td class="m">11/8/26</td><td class="m">11/9/26 to 11/20/26</td><td class="m ga">11/22/26</td></tr>
-    <tr><td class="k">January release <em>derived</em></td><td class="m">11/9/26</td><td class="m">12/11/26</td><td class="m">12/20/26</td><td class="m">12/21/26 to 1/1/27</td><td class="m ga">1/3/27</td></tr>
-    <tr><td class="k">February release <em>derived</em></td><td class="m">12/21/26</td><td class="m">1/22/27</td><td class="m">1/31/27</td><td class="m">2/1/27 to 2/12/27</td><td class="m ga">2/14/27</td></tr>
-    <tr><td class="k">March release <em>derived</em></td><td class="m">2/1/27</td><td class="m">3/5/27</td><td class="m">3/14/27</td><td class="m">3/15/27 to 3/26/27</td><td class="m ga">3/28/27</td></tr>
+    <tr><th>Release</th><th>Sprint 1 starts</th><th>Branch cut</th><th>RC1</th><th>UAT release</th><th>Client UAT</th><th>GA</th></tr>
+    <tr><td class="k">October release</td><td class="m">8/17/26</td><td class="m">9/18/26</td><td class="m">9/27/26</td><td class="m">9/27/26</td><td class="m">9/28/26 to 10/4/26</td><td class="m ga">10/4/26</td></tr>
+    <tr><td class="k">November release</td><td class="m">9/28/26</td><td class="m">10/23/26</td><td class="m">10/26/26</td><td class="m">11/8/26</td><td class="m">11/9/26 to 11/15/26</td><td class="m ga">11/15/26</td></tr>
+    <tr><td class="k">January release <em>derived</em></td><td class="m">11/9/26</td><td class="m">12/4/26</td><td class="m">12/7/26</td><td class="m">12/20/26</td><td class="m">12/21/26 to 12/27/26</td><td class="m ga">12/27/26</td></tr>
+    <tr><td class="k">February release <em>derived</em></td><td class="m">12/21/26</td><td class="m">1/15/27</td><td class="m">1/18/27</td><td class="m">1/31/27</td><td class="m">2/1/27 to 2/7/27</td><td class="m ga">2/7/27</td></tr>
+    <tr><td class="k">March release <em>derived</em></td><td class="m">2/1/27</td><td class="m">2/26/27</td><td class="m">3/1/27</td><td class="m">3/14/27</td><td class="m">3/15/27 to 3/21/27</td><td class="m ga">3/21/27</td></tr>
   </table>
   </div>
-  <p style="margin-top:14px">October and November sprint dates are as stated in the Sep 3
-  meetings. The three later releases apply the same rules forward and are not yet agreed.</p>
+  <p style="margin-top:14px">October and November are being planned now. The three later
+  releases apply the same rules forward and are not yet agreed.</p>
 </section>
 
 <section class="two">
   <div>
     <h3>What changes</h3>
     <ul>
-      <li><b>The release branch is cut at the end of week 5,</b> a week earlier than before, and
-      locked. Changes after that need lead approval.</li>
-      <li><b>Week 6 is regression and regression fixes only.</b> No new work items, no spillover
-      from week 5.</li>
-      <li><b>The end of week 6 is a real release.</b> RC1 runs on it and the team treats it as
-      production grade. It goes to UAT instead of production.</li>
-      <li><b>A limited set of clients test on UAT for two weeks</b> while the teams move on to
-      the next release.</li>
-      <li><b>Only critical issues are fixed in that window.</b> Built and tested on DevOps, pushed
-      to UAT, merged back into the release build. Everything else defers.</li>
+      <li><b>Hardening sprints end after October.</b> From November the work moves inside Sprint 3,
+      which is why Sprint 3 is coloured as hardening on the calendar.</li>
+      <li><b>Planned work closes at the end of Sprint 2.</b> The branch is cut there and locked,
+      and RC1 is built at the start of Sprint 3.</li>
+      <li><b>Every release closes by the end of week 6.</b> Nothing from a release runs past that
+      point except critical UAT fixes.</li>
+      <li><b>Client UAT is one week,</b> from the Sunday release to GA the following Sunday.</li>
+      <li><b>October GA moves from 10/11 to 10/4,</b> which shortens that release's client UAT
+      window to one week and brings it onto the new shape early.</li>
     </ul>
   </div>
   <div>
     <h3>What stays the same</h3>
     <ul>
-      <li><b>Every production date.</b> October still ships 10/11. Nothing moves for clients.</li>
+      <li><b>The six-week rhythm.</b> GA every six weeks, and a release starts every six weeks.</li>
       <li><b>Two-week sprints,</b> the same Friday sprint boundaries and Sunday deployment nights.</li>
-      <li><b>The sprint calendar in Azure DevOps.</b> No renumbering, no new sprint length. What
-      tightens is planning inside the sprints.</li>
-      <li><b>Four sprints per release with the last one shared,</b> which is how the August and
-      October releases already run.</li>
-      <li><b>No drift between the internal and external calendars.</b> GA is always the Sunday
-      after the next release's sprint 1 closes: 10/9 then 10/11, 11/20 then 11/22.</li>
+      <li><b>The sprint calendar in Azure DevOps,</b> other than removing the hardening sprint
+      iterations from November.</li>
+      <li><b>Three sprints per release,</b> now with the third one dedicated to hardening.</li>
+      <li><b>No drift between the internal and external calendars.</b> The UAT release is the
+      Sunday that ends Sprint 3, and GA is the Sunday one week later.</li>
     </ul>
   </div>
 </section>
@@ -434,51 +438,48 @@ production every six weeks. No production date moves and the sprint calendar doe
   <div class="tbl">
   <table>
     <tr><th>Item</th><th>Status</th></tr>
-    <tr><td class="k">October production date</td>
-        <td><span class="chip fact">Settled here</span>10/11 stands and no release is delayed.
-        The Sep 3 morning session had discussed moving it to 10/25 to fit a two-week UAT window
-        after the hardening sprint. On this layout the UAT window sits alongside the hardening
-        sprint instead, so no move is needed. Worth confirming with the people in that morning
-        session.</td></tr>
-    <tr><td class="k">The 12/6 date</td>
-        <td><span class="chip open">Supersede</span>12/6 was recorded as the next production
-        release, and it followed from the 10/25 option. On this layout the next GA after 10/11 is
-        11/22, then 1/3/27.</td></tr>
-    <tr><td class="k">What the hardening sprint contains</td>
-        <td><span class="chip open">Confirm</span>The release build now goes to UAT before the
-        hardening sprint starts, so weeks 7 and 8 cover developer unit testing, critical UAT
-        fixes and the production regression pass, alongside sprint 1 work for the next release.
-        Regression on the release itself finishes in week 6.</td></tr>
-    <tr><td class="k">Branch cut date</td>
-        <td><span class="chip open">Confirm</span>Shown as 9/18, the Friday that ends week 5. The
-        planning sheet records the freeze as 9/20, the Sunday that ends the same week.</td></tr>
-    <tr><td class="k">One week of regression</td>
-        <td><span class="chip open">Risk</span>Week 6 is the only full regression week, and QA
-        raised that this is tight if anything slips out of week 5. The branch cut at the end of
-        week 5 is what protects it, so planning has to hold.</td></tr>
+    <tr><td class="k">October GA moves to 10/4</td>
+        <td><span class="chip open">Communicate</span>One week earlier than the 10/11 date
+        currently on the calendar. Account management and the clients on UAT need this before the
+        branch cut on 9/18.</td></tr>
+    <tr><td class="k">Client UAT drops to one week</td>
+        <td><span class="chip open">Communicate</span>The two-week window discussed in September
+        becomes one week from October onward. Worth stating plainly, together with the rule that
+        only critical issues are fixed inside it.</td></tr>
+    <tr><td class="k">December GA lands on 12/27</td>
+        <td><span class="chip open">Decide now</span>On this rhythm the release currently named
+        January hardens 12/7 to 12/18, puts clients on UAT from 12/21, and reaches production on
+        Sunday 12/27. Client testing runs through Christmas week. Holding that GA a week or
+        shortening that one cycle both put the rhythm back by February.</td></tr>
+    <tr><td class="k">Release names no longer match GA months</td>
+        <td><span class="chip open">Known</span>Names are being kept as they are. On the new
+        dates the release named January reaches production on 12/27/26, February on 2/7/27 and
+        March on 3/21/27, and no release lands in January. Worth a note wherever the names are
+        published.</td></tr>
+    <tr><td class="k">Capacity per release</td>
+        <td><span class="chip open">Expect the question</span>Planned development is four weeks
+        per release rather than five. Leadership will ask what that costs. The answer is fewer
+        post-release hotfixes and a two-week hardening window, but it is worth having numbers.</td></tr>
+    <tr><td class="k">Hardening sprint iterations in Azure DevOps</td>
+        <td><span class="chip open">Action</span>The hardening iterations already created for
+        November onward need removing or folding into Sprint 3 before planning starts.</td></tr>
     <tr><td class="k">UAT environment readiness</td>
         <td><span class="chip open">Separate track</span>Interfaces, billing, the communicator
         application, single sign-on, non-production data refresh and tenant setup are all
-        unresolved. This is an infrastructure workstream and it gates the client-facing half of
-        the proposal.</td></tr>
-    <tr><td class="k">Holiday exposure</td>
-        <td><span class="chip open">Plan now</span>On this rhythm the January release runs its
-        hardening sprint from 12/21/26 to 1/1/27 and its client UAT window from 12/21 to 1/3/27,
-        with GA on 1/3/27. Worth deciding in October rather than in December.</td></tr>
-    <tr><td class="k">10/23 versus 10/25</td>
-        <td><span class="chip fact">Resolved</span>Neither is a GA date on this layout. 10/23 is
-        the Friday that closes the November release sprint 2.</td></tr>
+        unresolved, and a one-week window leaves less room for environment problems.</td></tr>
   </table>
   </div>
 </section>
 
 <footer>
-Built from the Sep 2 and Sep 3 meeting notes and transcripts and the shared week and sprint
-planning sheet. October and November sprint dates are as stated in those meetings; the January
-release is derived from the same rules and is not yet agreed. Client names are omitted by design.
-Needs a human review before it is shared outside the group.
+Built from the Sep 2 and Sep 3 meeting notes and transcripts, the shared week and sprint planning
+sheet, and the workflow update of Sep 10. Sprint boundaries follow the existing Azure DevOps
+calendar. The January, February and March releases apply the same rules forward and are not yet
+agreed. Client names are omitted by design. Needs a human review before it is shared outside the
+group.
 </footer>
 
 </div>
 
-</body></html>
+</body>
+</html>
